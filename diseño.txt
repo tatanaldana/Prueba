@@ -1,0 +1,51 @@
+Base de Datos: acne
+
+Tablas:
+
+    Usuarios
+        Campos: 
+            -Documento(entero, clave primaria)
+            -Primer nombre(cadena de texto, longitud máxima de 100 caracteres)
+            -Segundo nombre(cadena de texto, longitud máxima de 50 caracteres)
+<            -Apellidos(cadena de texto, longitud máxima de 50 caracteres)
+            -Direccion(cadena de texto, longitud máxima de 20 caracteres)
+            -Telefono(entero)
+            -Ciudad(cadena de texto, longitud máxima de 20 caracteres)
+            -Rol(booleano): Campo que indica el rol del usuario. Puede tomar los valores 1 (verdadero) o 0 (falso), donde:
+                - 1: Propietario.
+                - 0: Conductor.
+            -ind_documento(índice unico)
+            -ind_rol(índice no único)
+            
+    Vehiculos
+        Campos: 
+            -Placa(cadena de texto, longitud máxima de 8 caracteres, clave primaria)
+            -Color(cadena de texto, longitud máxima de 20 caracteres)
+            -Marca(cadena de texto, longitud máxima de 20 caracteres)
+            -Tipo de vehiculo(booleano): Campo que indica el tipo de vehículo. Puede tomar los valores 1 (verdadero) o 0 (falso), donde:
+                - 1: Pùblico.
+                - 0: Particular.
+            -doc_usuario(entero, clave foránea relacionada con la tabla usuarios)
+            -ind_placa(índice unico)
+            -ind_dic_usuario(índice no único)
+            -ind_marca(índice no único)
+
+    Asignaciones
+        Campos:
+            -Id(entero, clave primaria auto incrementable)
+            -Placa_veh(cadena de texto, longitud máxima de 8 caracteres, clave foránea relacionada con la tabla vehiculos)
+            -doc_usuario(entero, clave foránea relacionada con la tabla usuarios)
+            -fecha asignacion(datetime):Campo que informa la fecha de asignacion del vehiculo al conductor
+            -Estado(booleano): Campo que indica si el vehiculo esta asignado a un conductor. Puede tomar los valores 1 (verdadero) o 0 (falso), donde:
+                - 1: Asignado.
+                - 0: Libre.
+Vistas:
+
+    Informe
+        Campos:
+            -Placa(cadena de texto, longitud máxima de 8 caracteres) - De la tabla Vehiculos
+            -Marca(cadena de texto, longitud máxima de 20 caracteres) - De la tabla Vehiculos
+            -Nombre conductor (cadena de texto, longitud máxima de 100 caracteres) - Concatenación de los campos "Primer nombre", "Segundo nombre" y "Apellidos" de la tabla Usuarios.
+            -Nombre propietario (cadena de texto, longitud máxima de 100 caracteres) - Concatenación de los campos "Primer nombre", "Segundo nombre" y "Apellidos" de la tabla Usuarios.
+
+
