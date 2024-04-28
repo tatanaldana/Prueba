@@ -8,7 +8,7 @@ USE acne;
 CREATE TABLE IF NOT EXISTS usuarios (
     documento INT(12) PRIMARY KEY,
     primer_nom VARCHAR(100) NOT NULL,
-    Segundo_nombreegundo_nom VARCHAR(50),
+    segundo_nom VARCHAR(50),
     apellidos VARCHAR(50) NOT NULL,
     direccion VARCHAR(20),
     telefono INT(10) NOT NULL,
@@ -44,9 +44,23 @@ CREATE TABLE IF NOT EXISTS asignaciones (
 
 -- Crear la vista Informe
 CREATE VIEW Informe AS
-SELECT V.placa, V.marca, CONCAT(U.primer_nom, ' ', IFNULL(U.segundo_nom, ''), ' ', U.apellidos) AS nombre_conductor,
+SELECT U.documento,V.placa, V.marca, CONCAT(U.primer_nom, ' ', IFNULL(U.segundo_nom, ''), ' ', U.apellidos) AS nombre_conductor,
     CONCAT(U_prop.primer_nom, ' ', IFNULL(U_prop.segundo_nom, ''), ' ', U_prop.apellidos) AS nombre_propietario
 FROM asignaciones A
 JOIN usuarios U ON A.doc_usuario = U.documento
 JOIN vehiculos V ON A.Placa_veh = V.placa
 JOIN Usuarios U_prop ON V.doc_usuario = U_prop.documento;
+
+
+CREATE VIEW PropietariosSinAsignar AS
+SELECT DISTINCT U.documento, CONCAT(U.primer_nom, ' ', IFNULL(U.segundo_nom, ''), ' ', U.apellidos) AS nombre_propietario, U.rol
+,(SELECT COUNT(*) FROM vehiculos WHERE doc_usuario = U.documento) AS cantidad_vehiculos FROM usuarios U
+LEFT JOIN vehiculos V ON U.documento = V.doc_usuario
+LEFT JOIN asignaciones A ON V.placa = A.placa_veh
+WHERE V.placa IS NOT NULL AND A.id IS NULL AND U.rol = 1;
+
+CREATE VIEW ConductoresLibres AS
+SELECT DISTINCT U.documento, CONCAT(U.primer_nom, ' ', IFNULL(U.segundo_nom, ''), ' ', U.apellidos) AS nombre_conductor,  U.rol
+FROM usuarios U
+LEFT JOIN asignaciones A ON U.documento = A.doc_usuario
+WHERE A.id IS NULL AND U.rol = 0;
