@@ -1,7 +1,7 @@
 <?php
 
 class Conexion{
-    private $server="mysql:host=localhost;dbname=acme";
+    private $server="mysql:host=localhost;dbname=acne";
     private $username="root";
     private $password="";
     Private $options=[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];

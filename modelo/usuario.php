@@ -34,7 +34,8 @@ class Usuario extends Conexion{
   public function  insert_usuarios($documento,$primer_nom,$segundo_nom,$apellidos,$direccion,$telefono,$ciudad,$rol){
     try {
       $conexion = parent::abrir();
-      $stmt = "INSERT INTO usuarios VALUES (:documento, :primer_nom, :segundo_nom, :apellidos,:direccion,:telefono,:ciudad,:rol)";
+      $stmt ="INSERT INTO usuarios (documento, primer_nom, segundo_nom, apellidos, direccion, telefono, ciudad, rol) 
+      VALUES (:documento, :primer_nom, :segundo_nom, :apellidos, :direccion, :telefono, :ciudad, :rol)";
       $stmt = $conexion->prepare($stmt);
       $stmt->bindParam(':documento', $documento);
       $stmt->bindParam(':primer_nom', $primer_nom);
@@ -83,9 +84,8 @@ class Usuario extends Conexion{
   public function  view_usuario(){
     try {
       $conexion = parent::abrir();  
-      $stmt = "SELECT * FROM view_inicial";
+      $stmt = "SELECT * FROM Informe";
       $stmt = $conexion->prepare($stmt);
-      $stmt->bindParam(':documento', $documento);
       $stmt->execute();
       $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $resultado;
@@ -93,5 +93,32 @@ class Usuario extends Conexion{
       throw new Exception('Error al eliminar al usuario: ' . $e->getMessage());
     }
   }
+
+  public function  view_propietario(){
+    try {
+      $conexion = parent::abrir();  
+      $stmt = "SELECT * FROM PropietariosSinAsignar";
+      $stmt = $conexion->prepare($stmt);
+      $stmt->execute();
+      $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $resultado;
+    } catch (PDOException $e) {
+      throw new Exception('Error al eliminar al usuario: ' . $e->getMessage());
+    }
+  }
+
+  public function  view_conductor(){
+    try {
+      $conexion = parent::abrir();  
+      $stmt = "SELECT * FROM ConductoresLibres";
+      $stmt = $conexion->prepare($stmt);
+      $stmt->execute();
+      $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $resultado;
+    } catch (PDOException $e) {
+      throw new Exception('Error al eliminar al usuario: ' . $e->getMessage());
+    }
+  }
+
 }
 ?>
