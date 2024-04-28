@@ -1,9 +1,9 @@
 <?php
-    require_once(__DIR__ . '/../../modelo/usuario.php');
+    require_once(__DIR__ . '/../../modelo/vehiculos.php');
     
-    $usuario = new Usuario();
+    $vehiculo = new Vehiculo();
   
-    $resultado = $usuario->view_usuario();
+    $resultado = $vehiculo->ver_vehiculos();
 
     if ($resultado) {
         $json_response = json_encode($resultado);

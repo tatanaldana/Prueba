@@ -3,7 +3,7 @@
     
     $usuario = new Usuario();
   
-    $resultado = $usuario->view_usuario();
+    $resultado = $usuario->view_conductor();
 
     if ($resultado) {
         $json_response = json_encode($resultado);

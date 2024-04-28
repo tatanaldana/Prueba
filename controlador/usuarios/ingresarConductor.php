@@ -12,10 +12,15 @@ if (empty($documento) || empty($primer_nom) || empty($segundo_nom) || empty($ape
 || empty($telefono) || empty($ciudad)) {
     $response = array("success" => false, "message" => "Por favor llena todos los campos del formulario");
 } else {
+    header('Content-Type: application/json');
     require_once(__DIR__ . '/../../modelo/usuario.php');
 
     $usuario = new Usuario();
 
+    $resultado=$usuario->buscar_usuarios($documento);
+    if (!empty($resultado)) {
+        $response = array("success" => false, "message" => "El conductor ya se encuentra registrado.");
+    } else {
     try {
         $resultado1 = $usuario->insert_usuarios($documento, $primer_nom, $segundo_nom, $apellidos, $direccion, $telefono, $ciudad, $rol);
         if ($resultado1 !== false) {
@@ -26,6 +31,7 @@ if (empty($documento) || empty($primer_nom) || empty($segundo_nom) || empty($ape
     } catch (Exception $e) {
         $response = array("success" => false, "message" => $e->getMessage());
     }
+}
 }
 
 echo json_encode($response);
