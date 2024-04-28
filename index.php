@@ -10,11 +10,11 @@
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                    <a class="navbar-brand" href="./">INICIO</a>
+                    <a class="navbar-brand" href="index.php">INICIO</a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                    <li ><a href="./">REPORTES <span class="sr-only">(current)</span></a></li>
+                    <li ><a href="gestion.php">GESTION <span class="sr-only">(current)</span></a></li>
                     </ul>
                 </div>
             </div> 
@@ -48,7 +48,8 @@
         <script src="view/public/js/jquery.js"></script>
         <script src="view/public/js/jquery.min.js"></script>
         <script src="view/public/bootstrap/js/bootstrap.min.js"></script>
-        <script src = " https://unpkg.com/sweetalert/dist/sweetalert.min.js " ></script>
+        <script src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script>
         <script src="view/public/js/usuarios.js"></script>
+        <script src="view/public/js/vehiculos.js"></script>
     </body>
 </html>
