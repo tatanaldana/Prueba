@@ -9,42 +9,44 @@
                 <div class="modal-body">
                     <div class="container-fluid">
                         <div class="tab-content">
-                        <div class="row form-group">
-                                    <div class="col-sm-2">
-                                        <label class="control-label" style="position:relative; top:7px;">Marca:</label>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="marca">
-                                    </div>
+                            <div class="row form-group">
+                                <input type="hidden" class="form-control" name="documento1" id="documento1">
+                            </div>     
+                            <div class="row form-group">
+                                <div class="col-sm-2">
+                                    <label class="control-label" style="position:relative; top:7px;">Marca:</label>
                                 </div>
-                                <div class="row form-group">
-                                    <div class="col-sm-2">
-                                        <label class="control-label" style="position:relative; top:7px;">Placa:</label>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="placa">
-                                    </div>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="marca">
                                 </div>
-                                <div class="row form-group">
-                                    <div class="col-sm-2">
-                                        <label class="control-label" style="position:relative; top:7px;">Color:</label>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="color">
-                                    </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-2">
+                                    <label class="control-label" style="position:relative; top:7px;">Placa:</label>
                                 </div>
-                                <div class="row form-group">
-                                    <div class="col-sm-2">
-                                        <label class="control-label" style="position:relative; top:7px;">Tipo de vehiculo:</label>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <select class="form-control" name="tipo_veh">
-                                            <option value="1">Público</option>
-                                            <option value="0">Particular</option>
-                                        </select>
-                                    </div>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="placa">
                                 </div>
-                            </div>           
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-2">
+                                    <label class="control-label" style="position:relative; top:7px;">Color:</label>
+                                </div>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="color">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-2">
+                                    <label class="control-label" style="position:relative; top:7px;">Tipo de vehiculo:</label>
+                                </div>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="tipo_veh">
+                                        <option value="1">Público</option>
+                                        <option value="0">Particular</option>
+                                    </select>
+                                </div>
+                            </div>         
                         </div>
                     </div> 
                 </div>
