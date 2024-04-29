@@ -271,6 +271,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('#TablaPropietario').on('click', '.editButton', function() {
         var documento = $(this).closest('tr').find('td:first').text();
+        console.log(documento);
                 
         // Realizar la solicitud AJAX utilizando el valor del documento
         $.ajax({
@@ -283,12 +284,12 @@ $(document).ready(function() {
                 if (response.length > 0) {
                     var propietario1 = response[0]; 
                     console.log(propietario1);
+                    $('#documento22').val(propietario1.documento);
                     $('#documento2').val(propietario1.documento).prop('disabled', true);
                     $('#primer_nom1').val(propietario1.primer_nom).prop('disabled', true);
                     $('#segundo_nom1').val(propietario1.segundo_nom).prop('disabled', true);
                     $('#apellidos1').val(propietario1.apellidos).prop('disabled', true);
-                    $('#documento22').val(propietario1.documento);
-                    $('#direccion1').val(propietario1.direccion)
+                    $('#direccion1').val(propietario1.direccion);
                     $('#telefono1').val(propietario1.telefono);
                     $('#ciudad1').val(propietario1.ciudad);
 
@@ -305,7 +306,8 @@ $(document).ready(function() {
 });
 
 $('#btnactualizar').click(function() {
-    var form = $('#form_ediusuario').serialize();
+    var form = $('#form_edipropietario').serializeArray();
+    form.push({ name: "documento33", value: $('#documento22').val() });
     $.ajax({
         method: 'POST',
         url: '/prueba/controlador/usuarios/EditarPropietario.php',
@@ -339,7 +341,7 @@ $('#btnactualizar2').click(function() {
     var form = $('#form_ediconductor').serialize();
     $.ajax({
         method: 'POST',
-        url: '/prueba/controlador/usuarios/EditarPropietario.php',
+        url: '/prueba/controlador/usuarios/EditarConductor.php',
         data: form,
         dataType: 'json',
         success: function(response) {

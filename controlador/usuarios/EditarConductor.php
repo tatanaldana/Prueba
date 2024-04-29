@@ -1,5 +1,5 @@
 <?php
-$documento = $_POST['documento33'];
+$documento = $_POST['documento22'];
 $direccion = $_POST['direccion1'];
 $telefono = $_POST['telefono1'];
 $ciudad = $_POST['ciudad1'];

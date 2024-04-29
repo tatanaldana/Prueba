@@ -10,7 +10,7 @@
                     <div class="container-fluid">
                         <div class="tab-content">
                             <div class="row form-group">
-                                <input type="hidden" class="form-control" name="documento2" id="documento33">
+                                <input type="hidden" class="form-control" name="documento22" id="documento33">
                             </div>    
                             <div class="row form-group">
                                 <div class="col-sm-2">

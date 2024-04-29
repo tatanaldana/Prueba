@@ -6,11 +6,11 @@
                 <center><h4 class="modal-title" id="myModalLabel">Datos del propietario</h4></center>
             </div>
             <form id="form_edipropietario">
-                <div class="modal-body">
+            <div class="modal-body">
                     <div class="container-fluid">
                         <div class="tab-content">
                             <div class="row form-group">
-                                <input type="hidden" class="form-control" name="documento2" id="documento22">
+                                <input type="hidden" class="form-control" name="documento33" id="documento22">
                             </div>    
                             <div class="row form-group">
                                 <div class="col-sm-2">
