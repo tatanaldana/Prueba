@@ -25,8 +25,8 @@
                 <div class="container-fluid">
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Propietarios</a></li>
-                        <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Conductores</a></li>
-                        <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Vehiculos</a></li>                   
+                        <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Conductores Disponibles</a></li>
+                        <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Vehiculos Disponibles</a></li>                   
                     </ul>
                     
                     <div class="tab-content">
@@ -70,11 +70,22 @@
                 </div>
             </div>
         </div> 
+        <?php 
+            include('view/vehiculos/AgregarModalVehiculo.php');
+            include('view/usuarios/VerModalPropietario.php');
+            include('view/usuarios/VerModalConductor.php');
+            include('view/vehiculos/VerModalVehiculo.php');
+            include('view/usuarios/EditarModalPropietario.php');
+            include('view/usuarios/EditarModalConductor.php');
+            include('view/vehiculos/EditarModalVehiculo.php');
+            include('view/usuarios/AsignarModalConductor.php');
+        ?>
         <script src="view/public/js/jquery.js"></script>
         <script src="view/public/js/jquery.min.js"></script>
         <script src="view/public/bootstrap/js/bootstrap.min.js"></script>
         <script src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script>
         <script src="view/public/js/usuarios.js"></script>
         <script src="view/public/js/vehiculos.js"></script>
+        <script src="view/public/js/asignaciones.js"></script>
     </body>
 </html>

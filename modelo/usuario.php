@@ -30,6 +30,26 @@ class Usuario extends Conexion{
     }
   }
 
+  public function  buscar_usuarios2($documento){
+    try {
+      $conexion = parent::abrir();  
+      $stmt = "SELECT U.documento, U.primer_nom, U.segundo_nom, U.apellidos, U.direccion, U.telefono, U.ciudad,
+      V.placa, V.color, V.marca,
+      CASE 
+          WHEN V.tipo_veh = 1 THEN 'Publico'
+          WHEN V.tipo_veh = 0 THEN 'Particular'
+          ELSE 'Desconocido'
+      END AS tipo_veh FROM usuarios as U JOIN vehiculos as V ON U.documento = V.doc_usuario WHERE U.documento = :documento";
+      $stmt = $conexion->prepare($stmt);
+      $stmt->bindParam(':documento', $documento); 
+      $stmt->execute();
+      $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $resultado;
+    } catch (PDOException $e) {
+      throw new Exception('Error en la consulta de usuarios: ' . $e->getMessage());
+    }
+  }
+
 
   public function  insert_usuarios($documento,$primer_nom,$segundo_nom,$apellidos,$direccion,$telefono,$ciudad,$rol){
     try {
@@ -76,6 +96,7 @@ class Usuario extends Conexion{
       $stmt = $conexion->prepare($stmt);
       $stmt->bindParam(':documento', $documento);
       $stmt->execute();
+      return true;
     } catch (PDOException $e) {
       throw new Exception('Error al eliminar al usuario: ' . $e->getMessage());
     }

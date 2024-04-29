@@ -40,10 +40,11 @@
             </div>
         </div>
         <?php 
-            include('view/AgregarModalPropietario.php');
-            include('view/AgregarModalConductor.php');
-            include('view/VerificarModalPropietario.php');
-            include('view/AgregarModalVehiculo.php');
+            include('view/usuarios/AgregarModalPropietario.php');
+            include('view/usuarios/AgregarModalConductor.php');
+            include('view/usuarios/VerificarModalPropietario.php');
+            include('view/vehiculos/AgregarModalVehiculo.php');
+            include('view/asignaciones/visualizarModalInforme.php');
         ?>
         <script src="view/public/js/jquery.js"></script>
         <script src="view/public/js/jquery.min.js"></script>
@@ -51,5 +52,6 @@
         <script src = "https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script>
         <script src="view/public/js/usuarios.js"></script>
         <script src="view/public/js/vehiculos.js"></script>
+        <script src="view/public/js/asignaciones.js"></script>
     </body>
 </html>
