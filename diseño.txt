@@ -36,16 +36,46 @@ Tablas:
             -Placa_veh(cadena de texto, longitud máxima de 8 caracteres, clave foránea relacionada con la tabla vehiculos)
             -doc_usuario(entero, clave foránea relacionada con la tabla usuarios)
             -fecha asignacion(datetime):Campo que informa la fecha de asignacion del vehiculo al conductor
-            -Estado(booleano): Campo que indica si el vehiculo esta asignado a un conductor. Puede tomar los valores 1 (verdadero) o 0 (falso), donde:
-                - 1: Asignado.
-                - 0: Libre.
+
 Vistas:
 
     Informe
         Campos:
-            -Placa(cadena de texto, longitud máxima de 8 caracteres) - De la tabla Vehiculos
-            -Marca(cadena de texto, longitud máxima de 20 caracteres) - De la tabla Vehiculos
-            -Nombre conductor (cadena de texto, longitud máxima de 100 caracteres) - Concatenación de los campos "Primer nombre", "Segundo nombre" y "Apellidos" de la tabla Usuarios.
-            -Nombre propietario (cadena de texto, longitud máxima de 100 caracteres) - Concatenación de los campos "Primer nombre", "Segundo nombre" y "Apellidos" de la tabla Usuarios.
+            - placa (cadena de texto, longitud máxima de 8 caracteres)
+            - Marca (cadena de texto)
+            - color (cadena de texto)
+            - nombre_propietario (cadena de texto)
+            - nombre_conductor (cadena de texto)
+        Descripción:
+            Esta vista proporciona información detallada sobre los vehículos, incluyendo la placa, marca y color del vehículo, así como el nombre del propietario y del conductor asociados.
 
 
+
+    PropietariosSinAsignar
+        Campos:
+            - documento (entero)
+            - nombre_propietario (cadena de texto)
+            - rol (booleano)
+            - cantidad_vehiculos (entero)
+        Descripción:
+            Esta vista muestra a los propietarios que no tienen vehículos asignados. Incluye el documento, nombre y rol del propietario, así como la cantidad de vehículos que posee.
+
+    
+    ConductoresLibres
+        Campos:
+            - documento (entero)
+            - nombre_conductor (cadena de texto)
+            - rol (booleano)
+        Descripción:
+            Esta vista presenta a los conductores que no tienen vehículos asignados. Incluye el documento, nombre y rol del conductor.
+
+
+    VehiculosSinAsignar
+        Campos:
+            - placa (cadena de texto, longitud máxima de 8 caracteres)
+            - color (cadena de texto)
+            - Marca (cadena de texto)
+            - doc_usuario (entero)
+            - tipo_veh (cadena de texto)
+        Descripción:
+            Esta vista muestra los vehículos que no están asignados a ningún conductor. Incluye la placa, color, marca, documento del propietario y tipo de vehículo.
