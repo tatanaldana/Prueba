@@ -37,21 +37,22 @@ CREATE TABLE IF NOT EXISTS asignaciones (
     placa_veh VARCHAR(8),
     doc_usuario INT,
     fecha_asignacion DATETIME,
-    Estado BOOLEAN,
     FOREIGN KEY (Placa_veh) REFERENCES vehiculos(placa),
     FOREIGN KEY (doc_usuario) REFERENCES usuarios(documento)
 );
 
 -- Crear la vista Informe
 CREATE VIEW Informe AS
-SELECT U.documento,V.placa, V.marca, CONCAT(U.primer_nom, ' ', IFNULL(U.segundo_nom, ''), ' ', U.apellidos) AS nombre_conductor,
-    CONCAT(U_prop.primer_nom, ' ', IFNULL(U_prop.segundo_nom, ''), ' ', U_prop.apellidos) AS nombre_propietario
-FROM asignaciones A
-JOIN usuarios U ON A.doc_usuario = U.documento
-JOIN vehiculos V ON A.Placa_veh = V.placa
-JOIN Usuarios U_prop ON V.doc_usuario = U_prop.documento;
+SELECT V.placa, V.Marca, V.color, 
+    CONCAT(UP.primer_nom, ' ', IFNULL(UP.segundo_nom, ''), ' ', UP.apellidos) AS nombre_propietario,
+    CONCAT(UC.primer_nom, ' ', IFNULL(UC.segundo_nom, ''), ' ', UC.apellidos) AS nombre_conductor
+FROM vehiculos V
+JOIN usuarios UP ON V.doc_usuario = UP.documento AND UP.rol = 1
+LEFT JOIN asignaciones A ON V.placa = A.placa_veh
+LEFT JOIN usuarios UC ON A.doc_usuario = UC.documento AND UC.rol = 0 
+WHERE A.id IS NOT NULL;
 
-
+-- Crear la vista PropietariosSinAsignar
 CREATE VIEW PropietariosSinAsignar AS
 SELECT DISTINCT U.documento, CONCAT(U.primer_nom, ' ', IFNULL(U.segundo_nom, ''), ' ', U.apellidos) AS nombre_propietario, U.rol
 ,(SELECT COUNT(*) FROM vehiculos WHERE doc_usuario = U.documento) AS cantidad_vehiculos FROM usuarios U
@@ -59,8 +60,20 @@ LEFT JOIN vehiculos V ON U.documento = V.doc_usuario
 LEFT JOIN asignaciones A ON V.placa = A.placa_veh
 WHERE V.placa IS NOT NULL AND A.id IS NULL AND U.rol = 1;
 
+-- Crear la vista ConductoresLibres
 CREATE VIEW ConductoresLibres AS
 SELECT DISTINCT U.documento, CONCAT(U.primer_nom, ' ', IFNULL(U.segundo_nom, ''), ' ', U.apellidos) AS nombre_conductor,  U.rol
 FROM usuarios U
 LEFT JOIN asignaciones A ON U.documento = A.doc_usuario
 WHERE A.id IS NULL AND U.rol = 0;
+
+-- Crear la vista VehiculosSinAsignar
+CREATE VIEW VehiculosSinAsignar AS
+SELECT v.placa, v.color, v.Marca, v.doc_usuario,CASE 
+          WHEN v.tipo_veh = 1 THEN 'Publico'
+          WHEN v.tipo_veh = 0 THEN 'Particular'
+          ELSE 'Desconocido'
+      END AS tipo_veh
+FROM vehiculos as v
+LEFT JOIN asignaciones as a ON v.placa = a.placa_veh
+WHERE a.id IS NULL;
